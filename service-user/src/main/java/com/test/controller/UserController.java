@@ -3,6 +3,7 @@ package com.test.controller;
 
 import com.test.User;
 import com.test.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,19 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @Value("${text.txt}")
+    private String txt;
+
     @GetMapping("/{uid}")
     public User findUserById(@PathVariable("uid") int uid) {
 
         return userService.getUserById(uid);
     }
+
+    @GetMapping("/txt")
+    public String getTxt() {
+
+        return this.txt;
+    }
+
 }
