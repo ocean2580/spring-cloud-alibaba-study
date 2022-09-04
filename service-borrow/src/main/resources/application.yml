@@ -30,3 +30,5 @@ spring:
         # 添加监控页面地址即可
         dashboard: localhost:8858
       web-context-unify: false
+      # 将刚刚编写的请求映射设定为限流页面
+      block-page: /blocked

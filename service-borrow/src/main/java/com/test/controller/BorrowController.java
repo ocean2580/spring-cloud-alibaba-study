@@ -1,5 +1,6 @@
 package com.test.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.entity.UserBorrowDetail;
 import com.test.service.BorrowService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,5 +24,14 @@ public class BorrowController {
     @RequestMapping("/borrow2/{uid}")
     UserBorrowDetail findUserBorrows2(@PathVariable("uid") int uid){
         return service.getUserBorrowDetailByUid(uid);
+    }
+
+    @RequestMapping("/blocked")
+    JSONObject blocked(){
+        JSONObject object = new JSONObject();
+        object.put("code", 403);
+        object.put("success", false);
+        object.put("massage", "您的请求频率过快，请稍后再试！");
+        return object;
     }
 }
