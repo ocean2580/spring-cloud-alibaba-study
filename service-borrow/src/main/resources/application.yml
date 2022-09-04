@@ -32,3 +32,7 @@ spring:
       web-context-unify: false
       # 将刚刚编写的请求映射设定为限流页面
       block-page: /blocked
+
+feign:
+  sentinel:
+    enabled: true
