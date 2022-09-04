@@ -10,14 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/borrow")
 public class BorrowController {
 
     @Resource
     BorrowService service;
 
-    @GetMapping("/{uid}")
+    @GetMapping("borrow/{uid}")
     UserBorrowDetail findUserBorrows(@PathVariable("uid") int uid){
+        return service.getUserBorrowDetailByUid(uid);
+    }
+
+    @RequestMapping("/borrow2/{uid}")
+    UserBorrowDetail findUserBorrows2(@PathVariable("uid") int uid){
         return service.getUserBorrowDetailByUid(uid);
     }
 }

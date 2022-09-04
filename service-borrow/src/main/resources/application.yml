@@ -29,3 +29,4 @@ spring:
       transport:
         # 添加监控页面地址即可
         dashboard: localhost:8858
+      web-context-unify: false
