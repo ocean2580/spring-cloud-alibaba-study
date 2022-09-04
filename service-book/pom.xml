@@ -36,11 +36,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-<!--        &lt;!&ndash;    nacos-discovery    &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--        </dependency>-->
+        <!--    nacos-discovery    -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
         <!--   sentinel     -->
         <dependency>
