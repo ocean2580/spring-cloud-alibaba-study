@@ -4,10 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSONObject;
 import com.test.entity.UserBorrowDetail;
 import com.test.service.BorrowService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -48,5 +45,13 @@ public class BorrowController {
     //替代方法必须和原方法返回值和参数一致，最后可以添加一个Throwable作为参数接受异常
     String except(Throwable t){
         return t.getMessage();
+    }
+
+    @RequestMapping("/test2")
+    @SentinelResource("test2")   //注意这里需要添加@SentinelResource才可以，用户资源名称就使用这里定义的资源名称
+    String findUserBorrows2(@RequestParam(value = "a", required = false) String a,
+                            @RequestParam(value = "b", required = false) String b,
+                            @RequestParam(value = "c",required = false) String c) {
+        return "请求成功！a = "+a+", b = "+b+", c = "+c;
     }
 }
