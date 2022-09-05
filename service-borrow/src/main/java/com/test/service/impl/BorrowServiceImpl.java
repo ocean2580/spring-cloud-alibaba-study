@@ -10,6 +10,7 @@ import com.test.mapper.BorrowMapper;
 import com.test.service.BorrowService;
 import com.test.service.client.BookClient;
 import com.test.service.client.UserClient;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -48,6 +49,7 @@ public class BorrowServiceImpl implements BorrowService{
         return new UserBorrowDetail(null, Collections.emptyList());
     }
 
+    @GlobalTransactional
     @Override
     public boolean doBorrow(int uid, int bid) {
         //1. 判断图书和用户是否都支持借阅
