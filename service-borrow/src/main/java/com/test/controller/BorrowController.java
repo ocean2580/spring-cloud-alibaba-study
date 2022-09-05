@@ -10,12 +10,13 @@ import javax.annotation.Resource;
 import java.io.IOException;
 
 @RestController
+@RequestMapping("/borrow")
 public class BorrowController {
 
     @Resource
     BorrowService service;
 
-    @GetMapping("borrow/{uid}")
+    @GetMapping("/{uid}")
     UserBorrowDetail findUserBorrows(@PathVariable("uid") int uid){
         return service.getUserBorrowDetailByUid(uid);
     }
