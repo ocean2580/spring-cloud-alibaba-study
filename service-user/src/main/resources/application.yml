@@ -27,10 +27,19 @@ text:
   txt: lbwnb!!!
 
 seata:
-  service:
-    vgroup-mapping:
-      # 这里需要对事务组做映射，默认的分组名为 应用名称-seata-service-group，将其映射到default集群
-      # 这个很关键，一定要配置对，不然会找不到服务
-      userservice-seata-service-group: default
-    grouplist:
-      default: localhost:8091
+  # 注册
+  registry:
+    # 使用Nacos
+    type: nacos
+    nacos:
+      # 使用Seata的命名空间，这样才能正确找到Seata服务，由于组使用的是SEATA_GROUP，配置默认值就是，就不用配了
+      namespace: 8131858f-e3fa-46fc-89a3-d28b9f11d663
+      username: nacos
+      password: nacos
+  # 配置
+  config:
+    type: nacos
+    nacos:
+      namespace: 8131858f-e3fa-46fc-89a3-d28b9f11d663
+      username: nacos
+      password: nacos
