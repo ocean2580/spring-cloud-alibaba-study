@@ -20,38 +20,17 @@ public class BorrowController {
         return service.getUserBorrowDetailByUid(uid);
     }
 
-    @RequestMapping("/borrow2/{uid}")
-    UserBorrowDetail findUserBorrows2(@PathVariable("uid") int uid){
-        return service.getUserBorrowDetailByUid(uid);
-    }
+    @RequestMapping("/take/{uid}/{bid}")
+    JSONObject borrow(@PathVariable("uid") int uid,
+                      @PathVariable("bid") int bid){
+        service.doBorrow(uid, bid);
 
-    @RequestMapping("/blocked")
-    JSONObject blocked(){
         JSONObject object = new JSONObject();
-        object.put("code", 403);
+        object.put("code", "200");
         object.put("success", false);
-        object.put("massage", "您的请求频率过快，请稍后再试！");
+        object.put("message", "借阅成功！");
         return object;
     }
 
-    @RequestMapping("/test")
-    @SentinelResource(value = "test",
-            fallback = "except",    //fallback指定出现异常时的替代方案
-            exceptionsToIgnore = IOException.class)  //忽略那些异常，也就是说这些异常出现时不使用替代方案
-    String test(){
-        throw new RuntimeException("HelloWorld！");
-    }
 
-    //替代方法必须和原方法返回值和参数一致，最后可以添加一个Throwable作为参数接受异常
-    String except(Throwable t){
-        return t.getMessage();
-    }
-
-    @RequestMapping("/test2")
-    @SentinelResource("test2")   //注意这里需要添加@SentinelResource才可以，用户资源名称就使用这里定义的资源名称
-    String findUserBorrows2(@RequestParam(value = "a", required = false) String a,
-                            @RequestParam(value = "b", required = false) String b,
-                            @RequestParam(value = "c",required = false) String c) {
-        return "请求成功！a = "+a+", b = "+b+", c = "+c;
-    }
 }

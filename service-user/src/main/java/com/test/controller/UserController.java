@@ -23,16 +23,27 @@ public class UserController {
     @Value("${text.txt}")
     private String txt;
 
+    @GetMapping("/txt")
+    public String getTxt() {
+
+        return this.txt;
+    }
+
     @GetMapping("/{uid}")
     public User findUserById(@PathVariable("uid") int uid) {
 
         return userService.getUserById(uid);
     }
 
-    @GetMapping("/txt")
-    public String getTxt() {
+    @RequestMapping("/remain/{uid}")
+    public int userRemain(@PathVariable("uid") int uid){
+        return userService.getRemain(uid);
+    }
 
-        return this.txt;
+    @RequestMapping("/borrow/{uid}")
+    public boolean userBorrow(@PathVariable("uid") int uid){
+        int remain = userService.getRemain(uid);
+        return userService.setRemain(uid, remain - 1);
     }
 
 }
